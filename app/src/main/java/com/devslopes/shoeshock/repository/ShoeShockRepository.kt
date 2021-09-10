@@ -8,6 +8,7 @@ object ShoeShockRepository {
 
     private val shoes = listOf(
         ShoeModel(
+            1,
             "Converse",
             "Chuck Taylor All Star",
             R.drawable.converse01red,
@@ -16,6 +17,7 @@ object ShoeShockRepository {
             mutableListOf(7.0, 7.5, 8.0, 8.5, 10.0)
         ),
         ShoeModel(
+            2,
             "Nike",
             "Nike Air Jordan 1",
             R.drawable.nike01,
@@ -27,5 +29,19 @@ object ShoeShockRepository {
 
     fun getShoes() = shoes
 
-    fun getItemDetail() = shoes
+    fun getItemDetail(item: String): ShoeModel {
+        return when(item) {
+            "Chuck Taylor All Star" -> shoes[0]
+            "Nike Air Jordan 1" -> shoes[1]
+            else -> ShoeModel(
+                999999,
+                "",
+                "",
+                1,
+                "",
+                0.00,
+                mutableListOf(0.0)
+            )
+        }
+    }
 }

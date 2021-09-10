@@ -6,7 +6,7 @@
     android:layout_width="300dp"
     android:layout_height="400dp"
     android:layout_margin="16dp"
-    android:background = "@color/lt_blue"
+    android:background = "@drawable/bg"
     android:clipToPadding="true"
     android:paddingHorizontal="4dp"
     android:paddingVertical="4dp">
