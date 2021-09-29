@@ -1,17 +1,17 @@
 package com.devslopes.shoeshock
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.devslopes.shoeshock.databinding.ActivityDetailBinding
-import com.devslopes.shoeshock.databinding.ActivityMainBinding
 import com.devslopes.shoeshock.models.ShoeModel
 import com.devslopes.shoeshock.repository.ShoeShockRepository
 
 class ShoeDetailActivity : AppCompatActivity() {
 
     companion object {
+        //const val SHOEMODEL = "SHOE_MODEL"
         const val SHOE = "SHOE"
     }
 
@@ -24,17 +24,16 @@ class ShoeDetailActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val current = intent.getStringExtra(SHOE).orEmpty()
-        val item = ShoeShockRepository.getItemDetail(current)
-        Log.v("DETAIL", "ITEM = $item")
-
-        binding.itemDetail.apply {
-            val displayPrice = "$" + item.price.toString()
-            binding.shoeName.text = item.title
-            binding.shoePrice.text = displayPrice
-            binding.shoeDescription.text = item.description
-            binding.shoeImage.setImageResource(item.image)
-        }
-        startActivity(intent)
+        val myDetailAdapter = ShoeAdapter(
+            ShoeShockRepository.getShoes(),
+         onItemClicked = { ShoeModel ->
+            val current = Intent(this, ShoeDetailActivity::class.java).apply {
+                putExtra("Shoe_Model", ShoeModel.image)
+                putExtra("Shoe_Model", ShoeModel.title)
+                putExtra("Shoe_Model", ShoeModel.price)
+                putExtra("Shoe_Model", ShoeModel.description)
+            }
+            startActivity(current)
+        })
     }
 }

@@ -25,7 +25,7 @@ class ShoeActivity: AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val shoe = intent.getStringExtra(SHOE).orEmpty()
-        val item = ShoeShockRepository.getItemDetail(shoe)
+        //val item = ShoeShockRepository.getItemDetail(shoe)
 
     }
 
@@ -37,7 +37,4 @@ class ShoeActivity: AppCompatActivity() {
         startActivity(intent2)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-    }
 }

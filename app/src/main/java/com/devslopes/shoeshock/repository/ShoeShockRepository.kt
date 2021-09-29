@@ -3,6 +3,7 @@ package com.devslopes.shoeshock.repository
 import com.devslopes.shoeshock.R
 import com.devslopes.shoeshock.databinding.ActivityCartBinding
 import com.devslopes.shoeshock.models.ShoeModel
+import java.text.FieldPosition
 
 object ShoeShockRepository {
 
@@ -29,19 +30,23 @@ object ShoeShockRepository {
 
     fun getShoes() = shoes
 
-    fun getItemDetail(item: String): ShoeModel {
-        return when(item) {
-            "Chuck Taylor All Star" -> shoes[0]
-            "Nike Air Jordan 1" -> shoes[1]
-            else -> ShoeModel(
-                999999,
-                "",
-                "",
-                1,
-                "",
-                0.00,
-                mutableListOf(0.0)
-            )
-        }
+    fun getItem(position: Int): ShoeModel {
+        return(shoes[position])
     }
+
+//    fun getItemDetail(item: String): ShoeModel {
+//        return when(item) {
+//            "Chuck Taylor All Star" -> shoes[0]
+//            "Nike Air Jordan 1" -> shoes[1]
+//            else -> ShoeModel(
+//                999999,
+//                "",
+//                "",
+//                1,
+//                "",
+//                0.00,
+//                mutableListOf(0.0)
+//            )
+//        }
+//    }
 }

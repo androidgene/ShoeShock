@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devslopes.shoeshock.databinding.ItemShoeBinding
 import com.devslopes.shoeshock.models.ShoeModel
+import com.devslopes.shoeshock.repository.ShoeShockRepository.getItem
 
 class ShoeAdapter(
     private val shoeList: List<ShoeModel>,
-    private val onClick: (ShoeModel) -> Unit
+    private val onItemClicked: (ShoeModel) -> Unit
 ) : RecyclerView.Adapter<ShoeAdapter.ShoeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoeViewHolder {
@@ -18,12 +19,11 @@ class ShoeAdapter(
     }
 
     override fun onBindViewHolder(holder: ShoeViewHolder, position: Int) {
-        val shoe = shoeList[position]
-        holder.bind(shoe)
-        holder.binding.root.setOnClickListener(){
-            onClick(shoe)
+        val shoe = getItem(position)
+        holder.itemView.setOnClickListener {
+            onItemClicked(shoe)
         }
-
+        holder.bind(shoe)
     }
 
     override fun getItemCount(): Int = shoeList.size
